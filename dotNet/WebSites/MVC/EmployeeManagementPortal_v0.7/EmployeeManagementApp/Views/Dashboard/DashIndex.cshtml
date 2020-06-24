@@ -1,0 +1,95 @@
+﻿@model IEnumerable<EmployeeManagementApp.Models.User>
+@*@{Layout = null; }*@
+
+@if (Session["UserID"] == null)
+{
+    Response.Redirect("~/Login/Index");
+}
+
+@{
+    ViewBag.Title = "Dashboard";
+    ViewBag.Id = Convert.ToInt32(Session["UserID"]);
+}
+
+@{ var imagePath = "";
+    if (Session["photoChoice"] != null)
+    {
+        imagePath = @"..\Images\"+Session["photoChoice"].ToString();
+    }
+}
+
+<h2>Dashboard</h2>
+<div id="login" style="float:right; padding-right:50px;">
+    <span>
+        User Name :  @Session["UserName"]
+        @if (Session["photoChoice"] != null)
+        {
+            <img alt="@Session["UserName"].ToString()" src="@imagePath" height="60px" width="55px" />
+        }
+        </span>
+    <span>
+
+
+    </span>
+    <br />
+    <span> <a href=@Url.Action("ChangePassword","Dashboard")>Change Password</a> &nbsp; &nbsp; <a href=@Url.Action("Logout","Login")>Logout</a>  </span>
+</div>
+
+<div>
+
+
+    @{
+        ViewBag.Title = "DashIndex";
+    }
+
+    @*<h2>DashIndex</h2>*@
+
+    <p>
+        @if (Session["Role"].ToString().ToUpper() == "ADMIN")
+        {
+            @Html.ActionLink("Create New User", "Create")
+        }
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
