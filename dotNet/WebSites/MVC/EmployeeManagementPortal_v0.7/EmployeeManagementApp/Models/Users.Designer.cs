@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Temp\EmployeeManagementApp\EmployeeManagementApp\EmployeeManagementApp\Models\Users.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\GitHub_Repository\WebDev\dotNet\WebSites\MVC\EmployeeManagementPortal_v0.7\EmployeeManagementApp\Models\Users.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

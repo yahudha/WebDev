@@ -29,6 +29,7 @@ namespace EmployeeManagementApp.Models
     
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
     
         public virtual int DeleteUser(Nullable<int> ip_ID)
         {
@@ -98,7 +99,5 @@ namespace EmployeeManagementApp.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateUser", ip_UserNameParameter, ip_PasswordParameter, ip_RoleParameter, ip_ImageParameter, ip_IdParameter);
         }
-
-        public System.Data.Entity.DbSet<EmployeeManagementApp.Models.GetUsers_Result> GetUsers_Result { get; set; }
     }
 }

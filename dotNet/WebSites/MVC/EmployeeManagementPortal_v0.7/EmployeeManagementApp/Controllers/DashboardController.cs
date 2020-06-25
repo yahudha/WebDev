@@ -7,6 +7,7 @@ using System.Data.Linq;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebGrease.Configuration;
 
 namespace EmployeeManagementApp.Controllers
 {
@@ -43,7 +44,8 @@ namespace EmployeeManagementApp.Controllers
 
         public ActionResult Edit(int Id)
         {
-            User objUser = userRepository.GetUserByID(Id);
+             User objUser = userRepository.GetUserByID(Id);
+            ViewBag.Roles = new SelectList(userRepository.GetRoles(), "RoleName", "RoleName");
             return View(objUser);
         }
 
@@ -52,29 +54,41 @@ namespace EmployeeManagementApp.Controllers
         public ActionResult Edit(int Id, User objUser)
         {
 
+            
+                string image_filename = string.Empty;
 
+                if (objUser.ImageFile == null)
+                {
+                    image_filename = "";
+                }
+                else
+                {
+                    image_filename = objUser.ImageFile.FileName;
+                    objUser.ImageFile.SaveAs(Server.MapPath("~//Images") + "/" + objUser.ImageFile.FileName);
+                    Session["photoChoice"] = objUser.ImageFile.FileName == "" ? null : objUser.ImageFile.FileName;
 
-            var user = new User()
-            {
-                Id = objUser.Id,
-                UserName = objUser.UserName,
-                Role = objUser.Role,
-                Image = string.IsNullOrEmpty(objUser.user_image_data.FileName) ? "" : objUser.user_image_data.FileName
-            };
-            using (var db = new EmployeeManagementAppEntities())
-            {
-                db.Users.Attach(user);
-                db.Entry(user).Property(x => x.UserName).IsModified = true;
-                db.Entry(user).Property(x => x.Role).IsModified = true;
-                db.Entry(user).Property(x => x.Image).IsModified = true;
-                db.SaveChanges();
-            }
+                }
 
-            objUser.user_image_data.SaveAs(Server.MapPath("~//Images") + "/" + objUser.user_image_data.FileName);
-            Session["Role"] = objUser.Role;
-            Session["UserName"] = objUser.UserName;
-            Session["photoChoice"] = objUser.user_image_data.FileName == "" ? null : objUser.user_image_data.FileName;
-            return RedirectToAction("DashIndex");
+                var user = new User()
+                {
+                    Id = objUser.Id,
+                    UserName = objUser.UserName,
+                    Role = objUser.Role,
+                    Image = image_filename
+                };
+                using (var db = new EmployeeManagementAppEntities())
+                {
+                    db.Users.Attach(user);
+                    db.Entry(user).Property(x => x.UserName).IsModified = true;
+                    db.Entry(user).Property(x => x.Role).IsModified = true;
+                    db.Entry(user).Property(x => x.Image).IsModified = true;
+                    db.SaveChanges();
+                }
+
+                Session["Role"] = objUser.Role;
+                Session["UserName"] = objUser.UserName;
+                return RedirectToAction("DashIndex");
+            
         }
 
         public ActionResult Details(int Id)

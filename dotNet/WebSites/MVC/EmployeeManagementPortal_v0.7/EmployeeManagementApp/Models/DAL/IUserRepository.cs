@@ -11,6 +11,9 @@ namespace EmployeeManagementApp.Models.DAL
     {
         IEnumerable<User> GetUsers();
 
+        IEnumerable<Role> GetRoles();
+
+
         User GetUserByID(int Id);
 
         void InsertUser(User objUser);

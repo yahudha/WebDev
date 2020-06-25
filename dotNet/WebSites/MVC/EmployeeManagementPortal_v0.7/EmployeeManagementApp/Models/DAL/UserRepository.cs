@@ -52,6 +52,11 @@ namespace EmployeeManagementApp.Models.DAL
             db.Entry(objUser).State = EntityState.Modified;
         }
 
+        public IEnumerable<Role> GetRoles()
+        {
+            return db.Roles.ToList();
+        }
+
 
 
         //public void UpdateFieldsSave(T entity, params Expression<func<t, object="">>[] includeProperties)

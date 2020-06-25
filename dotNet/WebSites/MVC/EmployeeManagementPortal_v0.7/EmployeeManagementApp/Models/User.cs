@@ -12,19 +12,20 @@ namespace EmployeeManagementApp.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Web;
 
     public partial class User
     {
         public int Id { get; set; }
         public string UserName { get; set; }
-
-        [DataType(DataType.Password)]
         public string Password { get; set; }
+        [Required(ErrorMessage = "Select a Role")]
         public string Role { get; set; }
         public string Image { get; set; }
-        public HttpPostedFileBase user_image_data { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
+        public string ErrorMessage { get; set; }
 
-        public string  ErrorMessage { get; set; }
+        
     }
 }
