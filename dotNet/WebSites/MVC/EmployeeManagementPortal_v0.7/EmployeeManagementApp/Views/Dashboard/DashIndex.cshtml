@@ -14,7 +14,7 @@
 @{ var imagePath = "";
     if (Session["photoChoice"] != null)
     {
-        imagePath = @"..\Images\"+Session["photoChoice"].ToString();
+        imagePath = @"..\Images\" + Session["photoChoice"].ToString();
     }
 }
 
@@ -26,7 +26,7 @@
         {
             <img alt="@Session["UserName"].ToString()" src="@imagePath" height="60px" width="55px" />
         }
-        </span>
+    </span>
     <span>
 
 
@@ -45,10 +45,14 @@
     @*<h2>DashIndex</h2>*@
 
     <p>
-        @if (Session["Role"].ToString().ToUpper() == "ADMIN")
+        @if (Session["Role"] != null && Session["Role"].ToString().ToUpper() == "ADMIN")
         {
             @Html.ActionLink("Create New User", "Create")
         }
+        <br />
+        @Html.ActionLink("Edit my Profile", "Edit", new { id = ViewBag.Id })
+
+
     </p>
     <table class="table">
         <tr>
@@ -64,7 +68,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Image)
             </th>
-            <th></th>
+            <th align="center"> Actions </th>
         </tr>
 
         @foreach (var item in Model)
@@ -83,9 +87,18 @@
                     @Html.DisplayFor(modelItem => item.Image)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+
+                    @if (Session["Role"] != null && Session["Role"].ToString().ToUpper() == "ADMIN")
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    }&nbsp; &nbsp;
+                    @if (Session["Role"] != null && Session["Role"].ToString().ToUpper() == "ADMIN")
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    }&nbsp; &nbsp;
+
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    &nbsp; &nbsp;
                 </td>
             </tr>
         }

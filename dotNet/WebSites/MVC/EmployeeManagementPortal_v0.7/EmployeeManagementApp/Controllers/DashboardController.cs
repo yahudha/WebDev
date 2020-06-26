@@ -30,6 +30,7 @@ namespace EmployeeManagementApp.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.Roles = new SelectList(userRepository.GetRoles(), "RoleName", "RoleName");
             return View();
         }
 
@@ -37,6 +38,13 @@ namespace EmployeeManagementApp.Controllers
         [HttpPost]
         public ActionResult Create(User objuser)
         {
+            string image_filename = string.Empty;
+
+            if (objuser.ImageFile != null)
+            {
+                objuser.ImageFile.SaveAs(Server.MapPath("~//Images") + "/" + objuser.ImageFile.FileName);
+                objuser.Image = objuser.ImageFile.FileName;
+            }
             userRepository.InsertUser(objuser);
             userRepository.Save();
             return RedirectToAction("DashIndex");
@@ -44,7 +52,7 @@ namespace EmployeeManagementApp.Controllers
 
         public ActionResult Edit(int Id)
         {
-             User objUser = userRepository.GetUserByID(Id);
+            User objUser = userRepository.GetUserByID(Id);
             ViewBag.Roles = new SelectList(userRepository.GetRoles(), "RoleName", "RoleName");
             return View(objUser);
         }
@@ -54,41 +62,41 @@ namespace EmployeeManagementApp.Controllers
         public ActionResult Edit(int Id, User objUser)
         {
 
-            
-                string image_filename = string.Empty;
 
-                if (objUser.ImageFile == null)
-                {
-                    image_filename = "";
-                }
-                else
-                {
-                    image_filename = objUser.ImageFile.FileName;
-                    objUser.ImageFile.SaveAs(Server.MapPath("~//Images") + "/" + objUser.ImageFile.FileName);
-                    Session["photoChoice"] = objUser.ImageFile.FileName == "" ? null : objUser.ImageFile.FileName;
+            string image_filename = string.Empty;
 
-                }
+            if (objUser.ImageFile == null)
+            {
+                image_filename = "";
+            }
+            else
+            {
+                image_filename = objUser.ImageFile.FileName;
+                objUser.ImageFile.SaveAs(Server.MapPath("~//Images") + "/" + objUser.ImageFile.FileName);
+                Session["photoChoice"] = objUser.ImageFile.FileName == "" ? null : objUser.ImageFile.FileName;
 
-                var user = new User()
-                {
-                    Id = objUser.Id,
-                    UserName = objUser.UserName,
-                    Role = objUser.Role,
-                    Image = image_filename
-                };
-                using (var db = new EmployeeManagementAppEntities())
-                {
-                    db.Users.Attach(user);
-                    db.Entry(user).Property(x => x.UserName).IsModified = true;
-                    db.Entry(user).Property(x => x.Role).IsModified = true;
-                    db.Entry(user).Property(x => x.Image).IsModified = true;
-                    db.SaveChanges();
-                }
+            }
 
-                Session["Role"] = objUser.Role;
-                Session["UserName"] = objUser.UserName;
-                return RedirectToAction("DashIndex");
-            
+            var user = new User()
+            {
+                Id = objUser.Id,
+                UserName = objUser.UserName,
+                Role = objUser.Role,
+                Image = image_filename
+            };
+            using (var db = new EmployeeManagementAppEntities())
+            {
+                db.Users.Attach(user);
+                db.Entry(user).Property(x => x.UserName).IsModified = true;
+                db.Entry(user).Property(x => x.Role).IsModified = true;
+                db.Entry(user).Property(x => x.Image).IsModified = true;
+                db.SaveChanges();
+            }
+
+            Session["Role"] = objUser.Role;
+            Session["UserName"] = objUser.UserName;
+            return RedirectToAction("DashIndex");
+
         }
 
         public ActionResult Details(int Id)
