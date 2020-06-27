@@ -67,7 +67,7 @@ namespace EmployeeManagementApp.Controllers
 
             if (objUser.ImageFile == null)
             {
-                image_filename = "";
+                image_filename = Session["photoChoice"].ToString();
             }
             else
             {
