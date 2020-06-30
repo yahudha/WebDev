@@ -1,0 +1,75 @@
+﻿@model EmployeeManagementPortal_v0._8.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+
+    <style>
+        #login {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border: solid 1px cadetblue;
+            padding: 15px 15px;
+        }
+    </style>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+</head>
+<body>
+
+    <div>
+        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+        {
+            <table id="login">
+                <tr>
+                    <td colspan="3" align="center" style="color:cadetblue; ">
+                        Login
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Username :  </td>
+                    <td></td>
+                    <td>
+                        @Html.EditorFor(m => m.UserName, new { autocomplete = "off" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password : </td>
+                    <td></td>
+                    <td>
+                        @Html.EditorFor(m => m.Password, new { autocomplete = "off" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center">
+                        <input type="submit" value="Login" id="btn" /> &nbsp;&nbsp;
+                        <input type="reset" value="Clear" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="3" style="color:red">
+                        @Html.DisplayFor(m => m.ErrorMessage)<br />
+                        @Html.ValidationMessageFor(m => m.UserName)<br />
+                        @Html.ValidationMessageFor(m => m.Password)<br />
+                    </td>
+                </tr>
+            </table>
+            }
+
+    </div>
+
+</body>
+</html>

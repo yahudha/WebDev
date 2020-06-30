@@ -29,7 +29,7 @@
         }
     </style>
 </head>
-<body style="background:url(~/Images/bg6.jpg)">
+<body style="background:url(../../Images/bg6.jpg) no-repeat">
     <div id="login-div">
         @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
         {
@@ -69,7 +69,9 @@
             </table>
         }
     </div>
-
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
