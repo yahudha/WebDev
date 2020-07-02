@@ -19,9 +19,9 @@ namespace EmployeeManagementPortal_v0._8.Models
         
         //[Required (AllowEmptyStrings =false, ErrorMessage ="Username cannot be Empty" ) ]
         public string UserName { get; set; }
-        
+
         //[Required (AllowEmptyStrings =false, ErrorMessage = "Password cannot be Empty")]
-        //[DataType ("Password", ErrorMessage ="Password cannot be empty")]
+        [DataType("Password")]
         public string Password { get; set; }
         public string Role { get; set; }
         public string Image { get; set; }

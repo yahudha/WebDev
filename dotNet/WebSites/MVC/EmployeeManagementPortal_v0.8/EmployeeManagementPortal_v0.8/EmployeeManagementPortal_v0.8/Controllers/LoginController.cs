@@ -40,5 +40,13 @@ namespace EmployeeManagementPortal_v0._8.Controllers
 
             return RedirectToAction("DashIndex", "Dashboard");
         }
+
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            Session.RemoveAll();
+            return View("Index");
+        }
     }
 }

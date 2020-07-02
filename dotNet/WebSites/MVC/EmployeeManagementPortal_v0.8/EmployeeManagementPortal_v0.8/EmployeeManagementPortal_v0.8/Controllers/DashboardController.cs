@@ -32,6 +32,7 @@ namespace EmployeeManagementPortal_v0._8.Controllers
         public ActionResult Edit(int Id)
         {
             var objUser = db.GetUserbyID(Id);
+            ViewBag.Roles = new SelectList(db.GetRoles(), "RoleName", "RoleName");
             return View(objUser);
         }
 
@@ -48,7 +49,7 @@ namespace EmployeeManagementPortal_v0._8.Controllers
 
             };
 
-            using(var db = new EmployeeManagementAppEntities())
+            using (var db = new EmployeeManagementAppEntities())
             {
                 db.Users.Attach(user);
                 db.Entry(user).Property(x => x.UserName).IsModified = true;
@@ -84,6 +85,7 @@ namespace EmployeeManagementPortal_v0._8.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.Roles = new SelectList(db.GetRoles(), "RoleName", "RoleName");
             return View();
         }
 
@@ -94,5 +96,34 @@ namespace EmployeeManagementPortal_v0._8.Controllers
             db.Save();
             return RedirectToAction("DashIndex");
         }
+
+        public ActionResult ChangePassword()
+        {
+            int Id = Convert.ToInt32(Session["UserId"]);
+            var objUser = db.GetUserbyID(Id);
+            return View(objUser);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(User objUser)
+        {
+
+            var user = new User
+            {
+                Id = objUser.Id,
+                Password = objUser.Password
+
+            };
+
+            using (var db = new EmployeeManagementAppEntities())
+            {
+                db.Users.Attach(user);
+                db.Entry(user).Property(x => x.Password).IsModified = true;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("DashIndex");
+        }
+
     }
 }

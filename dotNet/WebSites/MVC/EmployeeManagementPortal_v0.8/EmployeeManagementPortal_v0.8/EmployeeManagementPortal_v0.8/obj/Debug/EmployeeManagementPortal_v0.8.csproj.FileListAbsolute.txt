@@ -80,3 +80,4 @@ D:\GitHub_Repository\WebDev\dotNet\WebSites\MVC\EmployeeManagementPortal_v0.8\Em
 D:\GitHub_Repository\WebDev\dotNet\WebSites\MVC\EmployeeManagementPortal_v0.8\EmployeeManagementPortal_v0.8\EmployeeManagementPortal_v0.8\obj\Debug\EmployeeManagementPortal_v0.8.csproj.CopyComplete
 D:\GitHub_Repository\WebDev\dotNet\WebSites\MVC\EmployeeManagementPortal_v0.8\EmployeeManagementPortal_v0.8\EmployeeManagementPortal_v0.8\obj\Debug\EmployeeManagementPortal_v0.8.dll
 D:\GitHub_Repository\WebDev\dotNet\WebSites\MVC\EmployeeManagementPortal_v0.8\EmployeeManagementPortal_v0.8\EmployeeManagementPortal_v0.8\obj\Debug\EmployeeManagementPortal_v0.8.pdb
+D:\GitHub_Repository\WebDev\dotNet\WebSites\MVC\EmployeeManagementPortal_v0.8\EmployeeManagementPortal_v0.8\EmployeeManagementPortal_v0.8\obj\Debug\EmployeeManagementPortal_v0.8.csprojAssemblyReference.cache

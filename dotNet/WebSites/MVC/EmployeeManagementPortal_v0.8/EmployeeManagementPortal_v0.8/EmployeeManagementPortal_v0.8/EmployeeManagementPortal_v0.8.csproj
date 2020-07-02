@@ -224,6 +224,7 @@
     <Content Include="Views\DashBoard\Edit.cshtml" />
     <Content Include="Views\DashBoard\Delete.cshtml" />
     <Content Include="Views\DashBoard\Details.cshtml" />
+    <Content Include="Views\DashBoard\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
