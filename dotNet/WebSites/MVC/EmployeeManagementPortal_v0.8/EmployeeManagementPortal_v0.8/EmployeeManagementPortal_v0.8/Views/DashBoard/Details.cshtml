@@ -58,7 +58,11 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @if (Session["UserId"].ToString() == Model.Id.ToString())
+        {
+            @Html.ActionLink("Edit My Profile", "Edit", new { id = Model.Id })
+        }
+        <br />
         @Html.ActionLink("Back to List", "DashIndex")
     </p>
 </body>

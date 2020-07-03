@@ -39,6 +39,15 @@ namespace EmployeeManagementPortal_v0._8.Controllers
         [HttpPost]
         public ActionResult Edit(User objUser)
         {
+            if (objUser.ImageFile != null)
+            {
+                objUser.Image = objUser.ImageFile.FileName;
+                objUser.ImageFile.SaveAs(Server.MapPath("~//Images") + "/" + objUser.ImageFile.FileName);
+                if (Session["UserId"].ToString() == objUser.Id.ToString())
+                {
+                    Session["Image"] = objUser.Image;
+                }
+            }
 
             var user = new User
             {
@@ -92,6 +101,11 @@ namespace EmployeeManagementPortal_v0._8.Controllers
         [HttpPost]
         public ActionResult Create(User objUser)
         {
+            if (objUser.ImageFile != null)
+            {
+                objUser.Image = objUser.ImageFile.FileName;
+                objUser.ImageFile.SaveAs(Server.MapPath("~//Images") + "/" + objUser.ImageFile.FileName);
+            }
             db.InsertUser(objUser);
             db.Save();
             return RedirectToAction("DashIndex");

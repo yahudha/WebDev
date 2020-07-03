@@ -36,20 +36,47 @@
 
 </head>
 <body style="width:95%;">
-    <div align="center">
-        <p style="float:left;">
+
+    <div style="float:right;">
+
+        <table>
+            <tr>
+                <td>Username : @Session["UserName"].ToString()</td>
+                <td rowspan="3"> <img src="~/Images/@Session["Image"]" width="60px" height="70px" /></td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink("Change Password", "ChangePassword")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink("Logout", "Logout", "Login")
+                </td>
+            </tr>
+        </table>
+        <span>
+
+
+
+            <br />
+
+            <br />
+            <br />
+
+        </span>
+    </div>
+    <div>
+        <span>
             @if (Session["Role"].ToString() == "Admin")
             {
                 @Html.ActionLink("Create New", "Create")
             }
-            </p>
-        <p style="float:right; align-items:end;">
-            @Html.ActionLink("Change Password", "ChangePassword")
-            <br />
-            @Html.ActionLink("Logout", "Logout","Login")
-
-        </p>
+            @Html.ActionLink("Edit My Profile", "Edit",  new { id = Convert.ToInt32(Session["UserId"]) })
+        </span>
     </div>
+    <br />
+    <br />
     <br />
     <br />
     <div>
@@ -70,7 +97,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Image)
                 </th>
-                <th></th>
+                <th align="center">Actions</th>
             </tr>
 
             @foreach (var item in Model)
@@ -92,8 +119,13 @@
                         @Html.DisplayFor(modelItem => item.Image)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @if (Session["Role"].ToString() == "Admin")
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                        }
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                         @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                     </td>
                 </tr>
