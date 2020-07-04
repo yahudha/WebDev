@@ -121,11 +121,37 @@ namespace EmployeeManagementPortal_v0._8.Controllers
         [HttpPost]
         public ActionResult ChangePassword(User objUser)
         {
+            var objUser_old = db.GetUserbyID(objUser.Id);
+
+            string OldPassword = objUser_old.Password.ToString();
+
+            if (string.IsNullOrEmpty(objUser.Password))
+            {
+                objUser.ErrorMessage = "Old Password cannot be Empty!";
+                return View("ChangePassword", objUser);
+
+
+            }
+
+            if (string.IsNullOrEmpty(objUser.NewPassword))
+            {
+                objUser.ErrorMessage = "New Password cannot be Empty!";
+                return View("ChangePassword", objUser);
+
+            }
+
+           
+            if (OldPassword != objUser.Password)
+            {
+                objUser.ErrorMessage = "Old Password do not match!";
+                return View("ChangePassword", objUser);
+
+            }
 
             var user = new User
             {
                 Id = objUser.Id,
-                Password = objUser.Password
+                Password = objUser.NewPassword
 
             };
 

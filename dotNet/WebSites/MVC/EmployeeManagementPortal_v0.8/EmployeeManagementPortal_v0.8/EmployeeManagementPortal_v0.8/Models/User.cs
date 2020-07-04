@@ -21,9 +21,18 @@ namespace EmployeeManagementPortal_v0._8.Models
         //[Required (AllowEmptyStrings =false, ErrorMessage ="Username cannot be Empty" ) ]
         public string UserName { get; set; }
 
-        //[Required (AllowEmptyStrings =false, ErrorMessage = "Password cannot be Empty")]
-        [DataType("Password")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "Password cannot be Empty")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        
+        [DataType(DataType.Password)]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "New Password cannot be Empty")]
+        public string NewPassword { get; set; }
+        
+        [Compare("NewPassword",ErrorMessage = "New Passwords do not match")]
+        [DataType(DataType.Password)]
+        public string NewRetypePassword { get; set; }
         public string Role { get; set; }
         public string Image { get; set; }
         public HttpPostedFileBase ImageFile { get; set; }
