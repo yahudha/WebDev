@@ -1,0 +1,10 @@
+D:\Temp\09July2020_nGuard_001\nGuard\nGuard\bin\Debug\nGuard.exe.config
+D:\Temp\09July2020_nGuard_001\nGuard\nGuard\bin\Debug\nGuard.exe
+D:\Temp\09July2020_nGuard_001\nGuard\nGuard\bin\Debug\nGuard.pdb
+D:\Temp\09July2020_nGuard_001\nGuard\nGuard\obj\Debug\nGuard.csprojAssemblyReference.cache
+D:\Temp\09July2020_nGuard_001\nGuard\nGuard\obj\Debug\nGuard.Form1.resources
+D:\Temp\09July2020_nGuard_001\nGuard\nGuard\obj\Debug\nGuard.Properties.Resources.resources
+D:\Temp\09July2020_nGuard_001\nGuard\nGuard\obj\Debug\nGuard.csproj.GenerateResource.cache
+D:\Temp\09July2020_nGuard_001\nGuard\nGuard\obj\Debug\nGuard.csproj.CoreCompileInputs.cache
+D:\Temp\09July2020_nGuard_001\nGuard\nGuard\obj\Debug\nGuard.exe
+D:\Temp\09July2020_nGuard_001\nGuard\nGuard\obj\Debug\nGuard.pdb
