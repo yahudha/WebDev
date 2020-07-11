@@ -1,0 +1,98 @@
+﻿@model EmployeeManagementPortal_v0._8.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Employee Portal </title>
+	<!-- Meta-Tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	
+	 <style>
+        #login {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border: solid 1px cadetblue;
+            padding: 15px 15px;
+        }
+    </style>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+	
+	<!-- //Meta-Tags -->
+	<!-- Stylesheets -->
+	
+	<link href="../Content/style_Login.css" rel='stylesheet' type='text/css' />
+	<!--// Stylesheets -->
+
+	<!--//fonts-->
+</head>
+
+<body>
+	<h1> Employee Portal </h1>
+	<div class="clear-loading spinner">
+		<span></span>
+	</div>
+	<div class="w3ls-login box box--big">
+		<!-- form starts here -->
+		@using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+        {
+			<div class="agile-field-txt">
+				<label><i class="fa fa-user" aria-hidden="true"></i> Username </label>
+				 @Html.EditorFor(m => m.UserName, new { autocomplete = "off", placeholder="Enter User Name" })
+				
+			</div>
+			<div class="agile-field-txt">
+				<label><i class="fa fa-unlock-alt" aria-hidden="true"></i> password </label>
+				@Html.EditorFor(m => m.Password, new { autocomplete = "off",type="password",placeholder="Enter Password",id= "Password" })
+				
+				<div class="agile_label">
+					<input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+					<label class="check" for="check3">Show password</label>
+				</div>
+				<div class="agile-right" style="color:red">
+				 @Html.DisplayFor(m => m.ErrorMessage)<br />
+                        @Html.ValidationMessageFor(m => m.UserName)<br />
+                        @Html.ValidationMessageFor(m => m.Password)<br />	
+				</div>
+				
+			</div>
+			<!-- script for show password -->
+			<script>
+				function myFunction() {
+                    var x = document.getElementById("Password");
+					if (x.type === "password") {
+						x.type = "text";
+					} else {
+						x.type = "password";
+					}
+				}
+			</script>
+			<!-- //end script -->
+				<input type="submit" value="LOGIN">
+		}
+	</div>
+	<!-- //form ends here -->
+	<!--copyright-->
+	<div class="copy-wthree">
+		
+	</div>
+	<!--//copyright-->
+</body>
+</html>

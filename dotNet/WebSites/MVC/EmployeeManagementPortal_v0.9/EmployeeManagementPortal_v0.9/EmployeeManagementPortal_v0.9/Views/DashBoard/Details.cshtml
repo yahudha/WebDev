@@ -1,0 +1,96 @@
+﻿
+@if (Session["UserId"] == null)
+{
+    Response.Redirect("~/Login/Index");
+    return;
+}
+
+@model EmployeeManagementPortal_v0._8.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <link rel="stylesheet" type="text/css" href="../../Content/main_dash.css">
+    <style>
+        a{
+            color:#0000EE;
+        }
+    </style>
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-table100" style="align-content:center;">
+            <div class="wrap-table100">
+                <div class="table100">
+            
+                    <table class="table">
+                        <thead>
+                            <tr class="table100-head">
+                                <th class="column2"> Attribute </th>
+                                <th class="column2"> Data </th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>
+                                    @Html.DisplayNameFor(model => model.UserName)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(model => model.UserName)
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayNameFor(model => model.Password)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(model => model.Password)
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayNameFor(model => model.Role)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(model => model.Role)
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayNameFor(model => model.Image)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(model => model.Image)
+                                </td>
+                            </tr>
+
+
+</table>
+                    <p>
+                        @if (Session["UserId"].ToString() == Model.Id.ToString())
+                        {
+                            @Html.ActionLink("Edit My Profile", "Edit", new { id = Model.Id })
+                        }
+                        <br />
+                        @Html.ActionLink("Back to List", "DashIndex")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

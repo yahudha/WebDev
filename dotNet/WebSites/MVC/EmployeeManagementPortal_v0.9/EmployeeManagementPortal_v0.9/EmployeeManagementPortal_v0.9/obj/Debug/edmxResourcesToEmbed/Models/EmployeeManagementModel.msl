@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EmployeeManagementAppModelStoreContainer" CdmEntityContainer="EmployeeManagementAppEntities">
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="EmployeeManagementAppModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="EmployeeManagementAppModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="DeleteUser" FunctionName="EmployeeManagementAppModel.Store.DeleteUser" />
+    <FunctionImportMapping FunctionImportName="GetUserByUID" FunctionName="EmployeeManagementAppModel.Store.GetUserByUID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EmployeeManagementAppModel.GetUserByUID_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUsers" FunctionName="EmployeeManagementAppModel.Store.GetUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EmployeeManagementAppModel.GetUsers_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertUser" FunctionName="EmployeeManagementAppModel.Store.InsertUser" />
+    <FunctionImportMapping FunctionImportName="UpdateUser" FunctionName="EmployeeManagementAppModel.Store.UpdateUser" />
+  </EntityContainerMapping>
+</Mapping>

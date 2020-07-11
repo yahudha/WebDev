@@ -1,0 +1,157 @@
+﻿@if (Session["UserId"] == null)
+{
+    Response.Redirect("~/Login/Index");
+    return;
+}
+
+@model IEnumerable<EmployeeManagementPortal_v0._8.Models.User>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DashIndex</title>
+    <style>
+        /* .table
+        {
+            top : 20%;
+            left : 30%;
+            position : absolute;
+        }
+
+        tr{
+            padding : 2%;
+        }
+        td {
+            padding: 2%;
+        }*/
+        a {
+            color: #0000EE;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="../Content/main_dash.css">
+</head>
+<body style="width:100%;">
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table100">
+                    <div style="float:right;">
+
+                        <table style="-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=50);opacity: 1 ; ">
+                            <tr>
+                                <td class="column2">Username : @Session["UserName"].ToString()</td>
+                                <td rowspan="3" class="column2" align="center" style="  left:10% ">
+                                    <img src="~/Images/@Session["Image"]" width="100px" height="120px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="column2">
+                                    @Html.ActionLink("Change Password", "ChangePassword")
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="column2">
+                                    @Html.ActionLink("Logout", "Logout", "Login")
+                                </td>
+                            </tr>
+                        </table>
+                        <span>
+
+
+
+                            <br />
+
+                            <br />
+                            <br />
+
+                        </span>
+                    </div>
+                    <div>
+                        <span>
+                            <span style="font-family:Verdana; font-size:x-large; color:lightblue; text-shadow:3px 3px 3px #333">
+                                Hello  @Session["UserName"].ToString()
+                            </span>
+                            <br />
+                            @if (Session["Role"].ToString() == "Admin")
+                            {
+                                @Html.ActionLink("Create New User", "Create")
+                            }
+                            <br />
+                            @Html.ActionLink("Edit My Profile", "Edit", new { id = Convert.ToInt32(Session["UserId"]) })
+                        </span>
+                    </div>
+                    <br />
+                    <div>
+
+                        <table class="table" width="50%">
+                            <thead>
+
+                                <tr class="table100-head">
+                                    <th class="column1">
+                                        @Html.DisplayNameFor(model => model.UserName)
+                                    </th>
+                                    @if (Session["Role"].ToString() == "Admin")
+                                    {
+                                        <th class="column1">
+                                            @Html.DisplayNameFor(model => model.Password)
+                                        </th>
+                                    }
+                                    <th class="column1">
+                                        @Html.DisplayNameFor(model => model.Role)
+                                    </th>
+                                    <th class="column1">
+                                        @Html.DisplayNameFor(model => model.Image)
+                                    </th>
+                                    <th align="center" class="column1">Actions</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+                                    @if (Session["Role"].ToString() == "Admin")
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Password)
+                                        </td>
+                                    }
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Role)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Image)
+                                    </td>
+                                    <td>
+                                        @if (Session["Role"].ToString() == "Admin")
+                                        {
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                        }
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        @if (Session["Role"].ToString() == "Admin")
+                                        {
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        }
+                                        </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

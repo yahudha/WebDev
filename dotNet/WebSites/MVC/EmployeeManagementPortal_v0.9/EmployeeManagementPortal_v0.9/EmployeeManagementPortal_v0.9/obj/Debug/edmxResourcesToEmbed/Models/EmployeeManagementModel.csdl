@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmployeeManagementAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="EmployeeManagementAppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <FunctionImport Name="DeleteUser">
+      <Parameter Name="ip_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserByUID" ReturnType="Collection(EmployeeManagementAppModel.GetUserByUID_Result)">
+      <Parameter Name="ip_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetUsers" ReturnType="Collection(EmployeeManagementAppModel.GetUsers_Result)" />
+    <FunctionImport Name="InsertUser">
+      <Parameter Name="ip_UserName" Mode="In" Type="String" />
+      <Parameter Name="ip_Password" Mode="In" Type="String" />
+      <Parameter Name="ip_Role" Mode="In" Type="String" />
+      <Parameter Name="ip_Image" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateUser">
+      <Parameter Name="ip_UserName" Mode="In" Type="String" />
+      <Parameter Name="ip_Password" Mode="In" Type="String" />
+      <Parameter Name="ip_Role" Mode="In" Type="String" />
+      <Parameter Name="ip_Image" Mode="In" Type="String" />
+      <Parameter Name="ip_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetUserByUID_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Role" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="GetUsers_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Role" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Image" Nullable="true" MaxLength="500" />
+  </ComplexType>
+</Schema>
