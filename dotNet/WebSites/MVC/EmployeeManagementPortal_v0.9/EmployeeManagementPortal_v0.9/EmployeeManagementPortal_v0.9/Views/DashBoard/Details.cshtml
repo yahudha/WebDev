@@ -18,11 +18,18 @@
     <meta name="viewport" content="width=device-width" />
     <title>Details</title>
     <link rel="stylesheet" type="text/css" href="../../Content/main_dash.css">
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
     <style>
-        a{
-            color:#0000EE;
+        a {
+            color: #0000EE;
         }
     </style>
+
+
 </head>
 <body>
     <div class="limiter">
@@ -80,6 +87,8 @@
 
 </table>
                     <p>
+                        <br />
+                        <br />
                         @if (Session["UserId"].ToString() == Model.Id.ToString())
                         {
                             @Html.ActionLink("Edit My Profile", "Edit", new { id = Model.Id })
