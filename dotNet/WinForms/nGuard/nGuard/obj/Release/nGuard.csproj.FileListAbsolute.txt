@@ -1,0 +1,9 @@
+D:\GitHub_Repository\WebDev\dotNet\WinForms\nGuard\nGuard\bin\Release\nGuard.exe.config
+D:\GitHub_Repository\WebDev\dotNet\WinForms\nGuard\nGuard\bin\Release\nGuard.exe
+D:\GitHub_Repository\WebDev\dotNet\WinForms\nGuard\nGuard\bin\Release\nGuard.pdb
+D:\GitHub_Repository\WebDev\dotNet\WinForms\nGuard\nGuard\obj\Release\nGuard.Form1.resources
+D:\GitHub_Repository\WebDev\dotNet\WinForms\nGuard\nGuard\obj\Release\nGuard.Properties.Resources.resources
+D:\GitHub_Repository\WebDev\dotNet\WinForms\nGuard\nGuard\obj\Release\nGuard.csproj.GenerateResource.cache
+D:\GitHub_Repository\WebDev\dotNet\WinForms\nGuard\nGuard\obj\Release\nGuard.csproj.CoreCompileInputs.cache
+D:\GitHub_Repository\WebDev\dotNet\WinForms\nGuard\nGuard\obj\Release\nGuard.exe
+D:\GitHub_Repository\WebDev\dotNet\WinForms\nGuard\nGuard\obj\Release\nGuard.pdb
